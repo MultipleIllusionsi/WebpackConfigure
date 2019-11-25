@@ -1,8 +1,11 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    main: "./src/index.js",
+    vendor: "./src/vendor.js"
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html"
@@ -25,11 +28,14 @@ module.exports = {
       {
         test: /\.(svg|png|jpg|gif)$/,
         use: {
-          loader: "file-loader",
+          loader: "url-loader",
           options: {
-            name: "[name].[hash].[ext]",
-            outputPath: "imgs"
+            fallback: require.resolve("file-loader")
           }
+          // options: {
+          //   name: "[name].[hash].[ext]",
+          //   outputPath: "imgs"
+          // }
         }
       }
     ]
