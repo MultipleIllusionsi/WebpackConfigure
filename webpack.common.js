@@ -14,12 +14,15 @@ module.exports = {
         use: {
           loader: "url-loader",
           options: {
-            fallback: require.resolve("file-loader")
+            fallback: require.resolve("file-loader"),
+            esModule: false
           }
+          // loader: "file-loader",
           // options: {
           //   name: "[name].[hash].[ext]",
-          //   outputPath: "imgs"
-          // }
+          //   outputPath: "imgs",
+          //   esModule: false,
+          // },
         }
       }
     ]
